@@ -50,7 +50,7 @@ export default class App extends Component {
 	additionalAttacks() {
 		let sequenceBonus = 0;
 		for( var key in this.state.configuration ) {
-			if( this.validateModifier( key, 'sequenceBonus' ) ) {
+			if( this.state.configuration.actionType == 'fullAttack' && this.validateModifier( key, 'sequenceBonus' ) ) {
 				sequenceBonus += Modifiers[ key ].sequenceBonus;
 			}
 		}
