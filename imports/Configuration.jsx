@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 export default class Configuration extends Component {
 	constructor( props ) {
 		super( props );
-		this.state = {};
+		this.state = {
+			actionType : 'fullAttack'
+		};
 		this.handleChange = this.handleChange.bind( this );
 	}
 	
@@ -25,7 +27,7 @@ export default class Configuration extends Component {
 	render() {
 		return (
 			<form className="configuration" onSubmit={ this.handleSubmit }>
-				<select onChange={ this.handleChange } value={ this.state.actionType || 'fullAttack' } id="actionType">
+				<select onChange={ this.handleChange } value={ this.state.actionType } id="actionType">
 					<option value="standard">Standard</option>
 					<option value="fullAttack">Full Attack</option>
 				</select>
