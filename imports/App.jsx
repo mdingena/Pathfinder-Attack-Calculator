@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Configuration from './Configuration';
+import Attack from './Attack';
 
 const Character = {
 	modifier : {
@@ -71,7 +72,7 @@ export default class App extends Component {
 				<ul className="attackSequence">
 					{ this.attackSequence().map(
 						( attack ) =>
-							<li key={ attack.key }>+{ attack.attackBonus }</li>
+							<Attack { ...attack } />
 					) }
 				</ul>
 			</div>
