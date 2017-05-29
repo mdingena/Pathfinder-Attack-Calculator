@@ -42,6 +42,16 @@ export default class App extends Component {
 		return this.state.configuration.hasOwnProperty( key ) && key.match( /^(feat|buff)/ ) && this.state.configuration[ key ] && Modifiers.hasOwnProperty( key ) && Modifiers[ key ].hasOwnProperty( property )
 	}
 	
+	additionalAttacks() {
+		let sequenceBonus = 0;
+		for( var key in this.state.configuration ) {
+			if( this.validateModifier( key, 'sequenceBonus' ) ) {
+				sequenceBonus = sequenceBonus + Modifiers[ key ].sequenceBonus;
+			}
+		}
+		return sequenceBonus;
+	}
+	
 	modifiedAttackBonus() {
 		let attackBonus = 0;
 		for( var key in this.state.configuration ) {
@@ -54,15 +64,16 @@ export default class App extends Component {
 	
 	attackSequence() {
 		const numberOfAttacks = 'fullAttack' === ( this.state.configuration.actionType || 'fullAttack' ) ? 1 + Math.floor( ( Character.modifier.baseAttackBonus - 1 ) / 5 ) : 1;
+		const additionalAttacks = this.additionalAttacks();
 		const modifiedAttackBonus = this.modifiedAttackBonus();
 		let attackSequence = [];
-		for( let count = 0; count < numberOfAttacks; ++count ) {
+		for( let count = -additionalAttacks; count < numberOfAttacks; ++count ) {
 			const attack = {
 				key         : count,
 				attackBonus : Character.modifier.baseAttackBonus
 							  + Character.modifier.dexterity
 							  + modifiedAttackBonus
-							  - 5 * count
+							  - 5 * ( count > 0 ? count : 0 )
 			};
 			attackSequence.push( attack );
 		}
