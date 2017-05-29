@@ -15,7 +15,7 @@ export default class Attack extends Component {
 	render() {
 		return (
 			<li>
-				+{ this.props.attackBonus }
+				{ this.props.attackBonus >= 0 ? "+" + this.props.attackBonus : this.props.attackBonus }
 				<form>
 					<input type="radio" onChange={ this.handleChange } name="result" value="miss" checked={ this.props.result == 'miss' } id={ 'miss-' + this.props.id } /><label htmlFor={ 'miss-' + this.props.id }>Miss</label>
 					<input type="radio" onChange={ this.handleChange } name="result" value="hit"  checked={ this.props.result == 'hit' }  id={ 'hit-' + this.props.id } /><label htmlFor={ 'hit-' + this.props.id }>Hit</label>

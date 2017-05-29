@@ -111,13 +111,15 @@ export default class App extends Component {
 	render() {
 		let attacks = [];
 		this.state.attackSequence.map(
-			( attack ) => { attacks.push( attack.attackBonus ); }
+			( attack ) => {
+				attacks.push( attack.attackBonus >= 0 ? "+" + attack.attackBonus : attack.attackBonus );
+			}
 		);
 		return (
 			<div className="app">
 				<Configuration updateCalculator={ this.configurationUpdated } />
 				<div>
-					{ "+" + attacks.join( " / +" ) }
+					{ attacks.join( " / " ) }
 				</div>
 				<ul className="attackSequence">
 					{ this.state.attackSequence.map(
