@@ -38,10 +38,14 @@ export default class App extends Component {
 		});
 	}
 	
+	validateModifier( key, property ) {
+		return this.state.configuration.hasOwnProperty( key ) && key.match( /^(feat|buff)/ ) && this.state.configuration[ key ] && Modifiers.hasOwnProperty( key ) && Modifiers[ key ].hasOwnProperty( property )
+	}
+	
 	modifiedAttackBonus() {
 		let attackBonus = 0;
 		for( var key in this.state.configuration ) {
-			if( this.state.configuration.hasOwnProperty( key ) && key.match( /^(feat|buff)/ ) && this.state.configuration[ key ] && Modifiers.hasOwnProperty( key ) && Modifiers[ key ].hasOwnProperty( 'attackBonus' ) ) {
+			if( this.validateModifier( key, 'attackBonus' ) ) {
 				attackBonus = attackBonus + Modifiers[ key ].attackBonus;
 			}
 		}
