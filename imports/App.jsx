@@ -30,13 +30,13 @@ export default class App extends Component {
 			attackSequence : []
 		};
 		this.configurationUpdated = this.configurationUpdated.bind( this );
-		this.attackResultsUpdated = this.attackResultsUpdated.bind( this );
+		this.modifyAttackSequence = this.modifyAttackSequence.bind( this );
 	}
 	
 	configurationUpdated( state ) {
 		this.setState({
 			configuration : state
-		}, () => { this.attackSequence() });
+		}, () => { this.buildAttackSequence() });
 	}
 	
 	validateModifier( key, property ) {
@@ -75,7 +75,7 @@ export default class App extends Component {
 		return attackBonus;
 	}
 	
-	attackSequence() {
+	buildAttackSequence() {
 		const numberOfAttacks = this.numberOfAttacks();
 		const additionalAttacks = this.additionalAttacks();
 		const modifiedAttackBonus = this.modifiedAttackBonus();
@@ -100,7 +100,7 @@ export default class App extends Component {
 		});
 	}
 	
-	attackResultsUpdated( id, result ) {
+	modifyAttackSequence( id, result ) {
 		let attackSequence = this.state.attackSequence;
 		attackSequence[ id ].result = result;
 		this.setState({
@@ -124,7 +124,7 @@ export default class App extends Component {
 				<ul className="attackSequence">
 					{ this.state.attackSequence.map(
 						( attack ) =>
-							<Attack updateCalculator={ this.attackResultsUpdated } { ...attack } />
+							<Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
 					) }
 				</ul>
 			</div>
