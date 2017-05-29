@@ -9,6 +9,10 @@ export default class Configuration extends Component {
 		this.handleChange = this.handleChange.bind( this );
 	}
 	
+	componentWillMount() {
+		this.props.updateCalculator( this.state );
+	}
+	
 	handleChange( event ) {
 		const target = event.target;
 		const value  = target.type === 'checkbox' ? target.checked : target.value;

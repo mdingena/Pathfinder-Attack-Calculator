@@ -33,10 +33,6 @@ export default class App extends Component {
 		this.attackResultsUpdated = this.attackResultsUpdated.bind( this );
 	}
 	
-	componentWillMount() {
-		this.attackSequence();
-	}
-	
 	configurationUpdated( state ) {
 		this.setState({
 			configuration : state
