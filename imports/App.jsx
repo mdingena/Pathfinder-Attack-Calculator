@@ -63,10 +63,8 @@ export default class App extends Component {
 	
 	numberOfArrows( attackId ) {
 		let arrows = 1;
-		for( var key in this.state.configuration ) {
-			if( attackId === 0 && this.validateModifier( key, 'additionalArrows' ) ) {
-				arrows += Modifiers[ key ].additionalArrows;
-			}
+		if( this.state.configuration.actionType == 'fullAttack' && attackId === 0 ) {
+			arrows += 1;
 		}
 		return arrows;
 	}
