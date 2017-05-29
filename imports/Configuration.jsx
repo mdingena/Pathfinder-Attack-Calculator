@@ -12,7 +12,7 @@ export default class Configuration extends Component {
 		const value  = target.type === 'checkbox' ? target.checked : target.value;
 		const id     = target.id;
 		this.setState({
-			[id] : value
+			[ id ] : value
 		}, () => {
 			this.props.updateCalculator( this.state );
 		});

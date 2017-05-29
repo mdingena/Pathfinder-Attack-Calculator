@@ -26,16 +26,21 @@ export default class App extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			configuration : {}
+			configuration : {},
+			attackSequence : []
 		};
 		this.configurationUpdated = this.configurationUpdated.bind( this );
+		this.attackResultsUpdated = this.attackResultsUpdated.bind( this );
+	}
+	
+	componentWillMount() {
+		this.attackSequence();
 	}
 	
 	configurationUpdated( state ) {
-		console.log( state );
 		this.setState({
 			configuration : state
-		});
+		}, () => { this.attackSequence() });
 	}
 	
 	validateModifier( key, property ) {
@@ -69,15 +74,29 @@ export default class App extends Component {
 		let attackSequence = [];
 		for( let count = -additionalAttacks; count < numberOfAttacks; ++count ) {
 			const attack = {
-				key         : count,
+				key         : count - -0,
+				id          : count + additionalAttacks,
 				attackBonus : Character.modifier.baseAttackBonus
 							  + Character.modifier.dexterity
 							  + modifiedAttackBonus
-							  - 5 * ( count > 0 ? count : 0 )
+							  - 5 * ( count > 0 ? count : 0 ),
+				result      : 'hit'
 			};
 			attackSequence.push( attack );
 		}
-		return attackSequence;
+		this.setState({
+			attackSequence : attackSequence
+		}, () => {
+			console.log( this.state );
+		});
+	}
+	
+	attackResultsUpdated( id, result ) {
+		let attackSequence = this.state.attackSequence;
+		attackSequence[ id ].result = result;
+		this.setState({
+			attackSequence : attackSequence
+		}, () => { console.log( this.state.attackSequence ); });
 	}
 	
 	render() {
@@ -85,9 +104,9 @@ export default class App extends Component {
 			<div className="app">
 				<Configuration updateCalculator={ this.configurationUpdated } />
 				<ul className="attackSequence">
-					{ this.attackSequence().map(
+					{ this.state.attackSequence.map(
 						( attack ) =>
-							<Attack { ...attack } />
+							<Attack updateCalculator={ this.attackResultsUpdated } { ...attack } />
 					) }
 				</ul>
 			</div>
