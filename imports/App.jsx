@@ -75,6 +75,16 @@ export default class App extends Component {
 		return attackBonus;
 	}
 	
+	attackTeaser() {
+		let attacks = [];
+		this.state.attackSequence.map(
+			( attack ) => {
+				attacks.push( attack.attackBonus >= 0 ? "+" + attack.attackBonus : attack.attackBonus );
+			}
+		);
+		return attacks.join( " / " );
+	}
+	
 	buildAttackSequence() {
 		const numberOfAttacks = this.numberOfAttacks();
 		const additionalAttacks = this.additionalAttacks();
@@ -109,17 +119,11 @@ export default class App extends Component {
 	}
 	
 	render() {
-		let attacks = [];
-		this.state.attackSequence.map(
-			( attack ) => {
-				attacks.push( attack.attackBonus >= 0 ? "+" + attack.attackBonus : attack.attackBonus );
-			}
-		);
 		return (
 			<div className="app">
 				<Configuration updateCalculator={ this.configurationUpdated } />
 				<div>
-					{ attacks.join( " / " ) }
+					{ this.attackTeaser() }
 				</div>
 				<ul className="attackSequence">
 					{ this.state.attackSequence.map(
