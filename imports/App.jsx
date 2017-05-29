@@ -47,11 +47,15 @@ export default class App extends Component {
 		return this.state.configuration.hasOwnProperty( key ) && key.match( /^(feat|buff)/ ) && this.state.configuration[ key ] && Modifiers.hasOwnProperty( key ) && Modifiers[ key ].hasOwnProperty( property )
 	}
 	
+	numberOfAttacks() {
+		return 'fullAttack' === ( this.state.configuration.actionType || 'fullAttack' ) ? 1 + Math.floor( ( Character.modifier.baseAttackBonus - 1 ) / 5 ) : 1;
+	}
+	
 	additionalAttacks() {
 		let sequenceBonus = 0;
 		for( var key in this.state.configuration ) {
 			if( this.validateModifier( key, 'sequenceBonus' ) ) {
-				sequenceBonus = sequenceBonus + Modifiers[ key ].sequenceBonus;
+				sequenceBonus += Modifiers[ key ].sequenceBonus;
 			}
 		}
 		return sequenceBonus;
@@ -61,14 +65,14 @@ export default class App extends Component {
 		let attackBonus = 0;
 		for( var key in this.state.configuration ) {
 			if( this.validateModifier( key, 'attackBonus' ) ) {
-				attackBonus = attackBonus + Modifiers[ key ].attackBonus;
+				attackBonus += Modifiers[ key ].attackBonus;
 			}
 		}
 		return attackBonus;
 	}
 	
 	attackSequence() {
-		const numberOfAttacks = 'fullAttack' === ( this.state.configuration.actionType || 'fullAttack' ) ? 1 + Math.floor( ( Character.modifier.baseAttackBonus - 1 ) / 5 ) : 1;
+		const numberOfAttacks = this.numberOfAttacks();
 		const additionalAttacks = this.additionalAttacks();
 		const modifiedAttackBonus = this.modifiedAttackBonus();
 		let attackSequence = [];
