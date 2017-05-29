@@ -61,6 +61,16 @@ export default class App extends Component {
 		return sequenceBonus;
 	}
 	
+	numberOfArrows( attackId ) {
+		let arrows = 1;
+		for( var key in this.state.configuration ) {
+			if( attackId === 0 && this.validateModifier( key, 'additionalArrows' ) ) {
+				arrows += Modifiers[ key ].additionalArrows;
+			}
+		}
+		return arrows;
+	}
+	
 	modifiedAttackBonus() {
 		let attackBonus = 0;
 		for( var key in this.state.configuration ) {
@@ -80,6 +90,7 @@ export default class App extends Component {
 			const attack = {
 				key         : count - -0,
 				id          : count + additionalAttacks,
+				arrows      : this.numberOfArrows( count + additionalAttacks ),
 				attackBonus : Character.modifier.baseAttackBonus
 							  + Character.modifier.dexterity
 							  + modifiedAttackBonus
