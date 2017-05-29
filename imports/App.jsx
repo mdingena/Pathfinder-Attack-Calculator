@@ -80,10 +80,10 @@ export default class App extends Component {
 		const additionalAttacks = this.additionalAttacks();
 		const modifiedAttackBonus = this.modifiedAttackBonus();
 		let attackSequence = [];
-		for( let count = -additionalAttacks; count < numberOfAttacks; ++count ) {
+		for( let count = 0; count < numberOfAttacks + additionalAttacks; ++count ) {
 			const attack = {
-				key         : count - -0,
-				id          : count + additionalAttacks,
+				key         : count,
+				id          : count,
 				arrows      : this.numberOfArrows( count + additionalAttacks ),
 				attackBonus : Character.modifier.baseAttackBonus
 							  + Character.modifier.dexterity
