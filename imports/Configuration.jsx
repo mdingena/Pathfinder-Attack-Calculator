@@ -46,6 +46,11 @@ export default class Configuration extends Component {
 					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffShockingBurst || false } id="buffShockingBurst" /><label htmlFor="buffShockingBurst">Shocking Burst</label>
 					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffFlamingBurst || false } id="buffFlamingBurst" /><label htmlFor="buffFlamingBurst">Flaming Burst</label>
 				</div>
+				<div className="smite">
+					<h3>Smite</h3>
+					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteEvil || false } id="buffSmiteEvil" /><label htmlFor="buffSmiteEvil">Target is evil</label>
+					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteSubtype || false } id="buffSmiteSubtype" /><label htmlFor="buffSmiteSubtype">Target is outsider [evil], dragon or undead</label>
+				</div>
 				<input type="submit" value="Attack" />
 			</form>
 		);

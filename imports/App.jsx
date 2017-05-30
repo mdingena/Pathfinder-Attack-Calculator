@@ -3,10 +3,12 @@ import Configuration from './Configuration';
 import Attack from './Attack';
 
 const Character = {
+	paladinLevel : 9,
 	modifier : {
 		baseAttackBonus : 9,
 		strength        : 0,
 		dexterity       : 6,
+		charisma        : 5,
 		size            : 0
 	}
 };
@@ -15,6 +17,7 @@ let Weapon = {
 	damageType : 'piercing',
 	baseDamage : '1d8',
 	additionalCritDice : 2,
+	enhancementBonus : 1
 };
 
 const Modifiers = {
@@ -90,7 +93,7 @@ export default class App extends Component {
 	}
 	
 	modifiedAttackBonus() {
-		let attackBonus = 0;
+		let attackBonus = Weapon.enhancementBonus;
 		for( var key in this.state.configuration ) {
 			if( this.validateModifier( key, 'attackBonus' ) ) {
 				attackBonus += Modifiers[ key ].attackBonus;
@@ -151,8 +154,23 @@ export default class App extends Component {
 		return baseDamage;
 	}
 	
-	bonusDamage() {
-		return '+22';
+	bonusDamage( attackId ) {
+		let damage = Weapon.enhancementBonus;
+		for( var key in this.state.configuration ) {
+			if( this.validateModifier( key, 'damageBonus' ) ) {
+				damage += Modifiers[ key ].damageBonus;
+			}
+		}
+		if( attackId == 0 && this.state.configuration.buffSmiteSubtype ) {
+			damage += 2 * Character.paladinLevel;
+		} else if( this.state.configuration.buffSmiteEvil ) {
+			damage += Character.modifier.charisma;
+		}
+		if( damage == 0 ) {
+			return '';
+		} else {
+			return damage > 0 ? '+' + damage : damage;
+		}
 	}
 	
 	bonusDice( attackResult ) {
@@ -171,7 +189,7 @@ export default class App extends Component {
 		let attacks = [];
 		for( let count = 0; count < this.state.attackSequence.length; ++count ) {
 			let baseDamage = this.baseDamage();
-			let bonusDamage = this.bonusDamage();
+			let bonusDamage = this.bonusDamage( count );
 			let attack = this.state.attackSequence[ count ];
 			if( attack.result != 'miss' ) {
 				let rolls = [];
