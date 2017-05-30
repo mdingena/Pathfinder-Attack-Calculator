@@ -51,6 +51,10 @@ export default class Configuration extends Component {
 					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteEvil || false } id="buffSmiteEvil" /><label htmlFor="buffSmiteEvil">Target is evil</label>
 					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteSubtype || false } id="buffSmiteSubtype" /><label htmlFor="buffSmiteSubtype">Target is outsider [evil], dragon or undead</label>
 				</div>
+				<div className="equipment">
+					<h3>Equipment</h3>
+					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBracersOfTheAvengingKnight || false } id="buffBracersOfTheAvengingKnight" /><label htmlFor="buffBracersOfTheAvengingKnight">Bracers Of The Avenging Knight</label>
+				</div>
 				<input type="submit" value="Attack" />
 			</form>
 		);
