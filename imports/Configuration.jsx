@@ -60,8 +60,8 @@ export default class Configuration extends Component {
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBracersOfTheAvengingKnight || false } id="buffBracersOfTheAvengingKnight" /><label htmlFor="buffBracersOfTheAvengingKnight">Bracers Of The Avenging Knight</label></li>
 					</ul>
 					<div className="teaser">
-						<div className="attackTeaser">{ this.props.attackTeaser }</div>
-						<div className="damageTeaser">{ this.props.damageTeaser }</div>
+						<div className="attackTeaser">{ this.props.attackTeaser } <small>ATK</small></div>
+						<div className="damageTeaser">{ this.props.damageTeaser } <small>DMG</small></div>
 					</div>
 					<button type="submit">Attack!</button>
 				</form>

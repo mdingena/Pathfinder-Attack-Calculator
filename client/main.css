@@ -7,14 +7,22 @@ html, body {
 	height: 100vh;
 	margin: 0;
 	font-family: 'arial';
+	background: skyblue;
 }
 
-#root,
+#root {
+	position: absolute;
+	top: 0;
+	left: 50%;
+}
 .app {
 	position: absolute;
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	max-width: 640px;
+	height: 100vh;
 	font-size: 19px;
+	transform: translateX( -50% );
+	box-shadow: 0 0 4px #112;
 }
 
 .configuration {
@@ -35,12 +43,13 @@ html, body {
 
 .configuration h3 {
 	text-align: center;
-	margin-bottom: 0.5em;
+	margin-bottom: 0;
 }
 
 .configuration ul {
 	list-style: none;
-	margin: 0;
+	max-width: 480px;
+	margin: 0 auto;
 	padding: 0;
 }
 .configuration ul li {
@@ -69,25 +78,34 @@ html, body {
 	bottom: 60px;
 	left: 0;
 	width: 100%;
+	max-width: 640px;
 	background: lightskyblue;
 }
 .configuration .attackTeaser,
 .configuration .damageTeaser {
 	float: left;
 	height: 40px;
+	line-height: 40px;
+	color: #ffd;
+	text-align: center;
 }
 .configuration .attackTeaser {
-	width: 80%;
+	width: 70%;
 }
 .configuration .damageTeaser {
-	width: 20%;
+	width: 30%;
+	background: crimson;
 }
 .configuration button {
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	width: 100%;
+	max-width: 640px;
 	height: 60px;
 	background: deepskyblue;
 	border: 0;
+	font-size: 2em;
+	color: #ffd;
+	cursor: pointer;
 }

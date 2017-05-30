@@ -120,7 +120,7 @@ export default class App extends Component {
 			}
 		);
 		this.setState({
-			attackTeaser : attacks.join( " / " )
+			attackTeaser : attacks.join( "/" )
 		});
 	}
 	
