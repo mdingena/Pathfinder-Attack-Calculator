@@ -54,7 +54,9 @@ export default class App extends Component {
 		this.state = {
 			configuration : {},
 			attackSequence : [],
-			damageRolls : []
+			damageRolls : [],
+			attackTeaser : '',
+			damageTeaser : ''
 		};
 		this.configurationUpdated = this.configurationUpdated.bind( this );
 		this.modifyAttackSequence = this.modifyAttackSequence.bind( this );
@@ -112,7 +114,33 @@ export default class App extends Component {
 				attacks.push( attack.attackBonus >= 0 ? "+" + attack.attackBonus : attack.attackBonus );
 			}
 		);
-		return attacks.join( " / " );
+		//return attacks.join( " / " );
+		this.setState({
+			attackTeaser : attacks.join( " / " )
+		});
+	}
+	
+	damageTeaser() {
+		let damage = 0;
+		this.state.damageRolls.map(
+			( attack, i ) => {
+				attack.map(
+					( roll, j ) => {
+						const total   = roll.split( ' ' )[ 0 ];
+						const split   = total.replace( '-', '+' ).split( '+' );
+						const dice    = split[ 0 ].split( 'd' );
+						const flat    = split[ 1 ] && parseInt( split[ 1 ] ) != 0 ? parseInt( split[ 1 ] ) : 0;
+						const diceAvg = parseInt( dice[ 0 ] ) * ( ( 1 + parseInt( dice[ 1 ] ) ) / 2 )
+						damage += diceAvg + flat;
+						console.log( i, j, flat, diceAvg );
+					}
+				);
+			}
+		);
+		//return damage;
+		this.setState({
+			damageTeaser : damage
+		});
 	}
 	
 	buildAttackSequence() {
@@ -135,7 +163,10 @@ export default class App extends Component {
 		}
 		this.setState({
 			attackSequence : attackSequence
-		}, () => { this.damageRolls(); });
+		}, () => {
+			this.attackTeaser();
+			this.damageRolls();
+		});
 	}
 	
 	modifyAttackSequence( id, result ) {
@@ -214,7 +245,10 @@ export default class App extends Component {
 		}
 		this.setState({
 			damageRolls : attacks
-		}, () => { console.log( this.state.damageRolls ); });
+		}, () => {
+			this.damageTeaser();
+			console.log( this.state.damageRolls );
+		});
 	}
 	
 	render() {
@@ -222,7 +256,10 @@ export default class App extends Component {
 			<div className="app">
 				<Configuration updateCalculator={ this.configurationUpdated } />
 				<div>
-					{ this.attackTeaser() }
+					{ this.state.attackTeaser }
+				</div>
+				<div>
+					{ this.state.damageTeaser }
 				</div>
 				<ul className="attackSequence">
 					{ this.state.attackSequence.map(
