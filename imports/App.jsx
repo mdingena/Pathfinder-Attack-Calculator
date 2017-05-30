@@ -162,7 +162,7 @@ export default class App extends Component {
 			}
 		}
 		let paladinLevel = Character.paladinLevel + ( this.state.configuration.buffBracersOfTheAvengingKnight ? 4 : 0 );
-		if( attackId == 0 && this.state.configuration.buffSmiteSubtype ) {
+		if( attackId == 0 && this.state.configuration.buffSmiteEvil && this.state.configuration.buffSmiteSubtype ) {
 			damage += 2 * paladinLevel;
 		} else if( this.state.configuration.buffSmiteEvil ) {
 			damage += Character.modifier.charisma;
