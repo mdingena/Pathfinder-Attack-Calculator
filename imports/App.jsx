@@ -99,6 +99,9 @@ export default class App extends Component {
 				attackBonus += Modifiers[ key ].attackBonus;
 			}
 		}
+		if( this.state.configuration.buffSmiteEvil ) {
+			attackBonus += Character.modifier.charisma;
+		}
 		return attackBonus;
 	}
 	
@@ -155,22 +158,22 @@ export default class App extends Component {
 	}
 	
 	bonusDamage( attackId ) {
-		let damage = Weapon.enhancementBonus;
+		let damageBonus = Weapon.enhancementBonus;
 		for( var key in this.state.configuration ) {
 			if( this.validateModifier( key, 'damageBonus' ) ) {
-				damage += Modifiers[ key ].damageBonus;
+				damageBonus += Modifiers[ key ].damageBonus;
 			}
 		}
 		let paladinLevel = Character.paladinLevel + ( this.state.configuration.buffBracersOfTheAvengingKnight ? 4 : 0 );
 		if( attackId == 0 && this.state.configuration.buffSmiteEvil && this.state.configuration.buffSmiteSubtype ) {
-			damage += 2 * paladinLevel;
+			damageBonus += 2 * paladinLevel;
 		} else if( this.state.configuration.buffSmiteEvil ) {
-			damage += Character.modifier.charisma;
+			damageBonus += paladinLevel;
 		}
-		if( damage == 0 ) {
+		if( damageBonus == 0 ) {
 			return '';
 		} else {
-			return damage > 0 ? '+' + damage : damage;
+			return damageBonus > 0 ? '+' + damageBonus : damageBonus;
 		}
 	}
 	
