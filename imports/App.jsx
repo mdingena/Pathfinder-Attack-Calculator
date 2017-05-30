@@ -204,8 +204,7 @@ export default class App extends Component {
 				</div>
 				<ul className="attackSequence">
 					{ this.state.attackSequence.map(
-						( attack ) =>
-							<Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
+						( attack ) => <Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
 					) }
 				</ul>
 				<ul className="damageRolls">
