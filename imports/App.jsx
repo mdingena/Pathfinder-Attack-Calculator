@@ -114,7 +114,6 @@ export default class App extends Component {
 				attacks.push( attack.attackBonus >= 0 ? "+" + attack.attackBonus : attack.attackBonus );
 			}
 		);
-		//return attacks.join( " / " );
 		this.setState({
 			attackTeaser : attacks.join( " / " )
 		});
@@ -130,14 +129,13 @@ export default class App extends Component {
 						const split   = total.replace( '-', '+' ).split( '+' );
 						const dice    = split[ 0 ].split( 'd' );
 						const flat    = split[ 1 ] && parseInt( split[ 1 ] ) != 0 ? parseInt( split[ 1 ] ) : 0;
-						const diceAvg = parseInt( dice[ 0 ] ) * ( ( 1 + parseInt( dice[ 1 ] ) ) / 2 )
+						const diceAvg = parseInt( dice[ 0 ] ) * ( ( 1 + parseInt( dice[ 1 ] ) ) / 2 );
 						damage += diceAvg + flat;
 						console.log( i, j, flat, diceAvg );
 					}
 				);
 			}
 		);
-		//return damage;
 		this.setState({
 			damageTeaser : damage
 		});
