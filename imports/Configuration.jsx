@@ -4,7 +4,9 @@ export default class Configuration extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			actionType : 'fullAttack'
+			actionType : 'fullAttack',
+			buffShockingBurst : true,
+			buffBracersOfTheAvengingKnight : true
 		};
 		this.handleChange = this.handleChange.bind( this );
 	}
