@@ -29,6 +29,13 @@ const Modifiers = {
 	buffGravityBow : {
 		baseDamage : '2d6'
 	},
+	buffShockingBurst : {
+		damageType : 'shocking',
+		bonusDice : {
+			hit : [ '1d6' ],
+			crit : [ '1d6', '1d10' ]
+		}
+	},
 	buffFlamingBurst : {
 		damageType : 'fire',
 		bonusDice : {

@@ -43,6 +43,7 @@ export default class Configuration extends Component {
 				<div className="buffs">
 					<h3>Buffs</h3>
 					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffGravityBow || false } id="buffGravityBow" /><label htmlFor="buffGravityBow">Gravity Bow</label>
+					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffShockingBurst || false } id="buffShockingBurst" /><label htmlFor="buffShockingBurst">Shocking Burst</label>
 					<input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffFlamingBurst || false } id="buffFlamingBurst" /><label htmlFor="buffFlamingBurst">Flaming Burst</label>
 				</div>
 				<input type="submit" value="Attack" />
