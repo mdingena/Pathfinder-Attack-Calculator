@@ -152,7 +152,7 @@ export default class App extends Component {
 			const attack = {
 				key         : count,
 				id          : count,
-				arrows      : this.numberOfArrows( count + additionalAttacks ),
+				arrows      : this.numberOfArrows( count ),
 				attackBonus : Character.modifier.baseAttackBonus
 							  + Character.modifier.dexterity
 							  + modifiedAttackBonus
