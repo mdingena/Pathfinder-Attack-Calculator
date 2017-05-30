@@ -257,13 +257,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<Configuration updateCalculator={ this.configurationUpdated } />
-				<div>
-					{ this.state.attackTeaser }
-				</div>
-				<div>
-					{ this.state.damageTeaser }
-				</div>
+				<Configuration updateCalculator={ this.configurationUpdated } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser }/>
 				<ul className="attackSequence">
 					{ this.state.attackSequence.map(
 						( attack ) => <Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />

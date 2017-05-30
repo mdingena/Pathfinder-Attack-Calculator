@@ -64,6 +64,24 @@ html, body {
 	padding: 4px 0 0 50px;
 }
 
+.configuration .teaser {
+	position: fixed;
+	bottom: 60px;
+	left: 0;
+	width: 100%;
+	background: lightskyblue;
+}
+.configuration .attackTeaser,
+.configuration .damageTeaser {
+	float: left;
+	height: 40px;
+}
+.configuration .attackTeaser {
+	width: 80%;
+}
+.configuration .damageTeaser {
+	width: 20%;
+}
 .configuration button {
 	position: fixed;
 	bottom: 0;
