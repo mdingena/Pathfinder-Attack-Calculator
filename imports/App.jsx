@@ -22,17 +22,21 @@ let Weapon = {
 
 const Modifiers = {
 	featRapidShot : {
+		actionTypes   : [ 'fullAttack' ],
 		attackBonus   : -2,
 		sequenceBonus : 1
 	},
 	featDeadlyAim : {
+		actionTypes   : [ 'standard', 'fullAttack' ],
 		attackBonus : -1 * ( 1 + Math.floor( Character.modifier.baseAttackBonus / 4 ) ),
 		damageBonus :  2 * ( 1 + Math.floor( Character.modifier.baseAttackBonus / 4 ) )
 	},
 	buffGravityBow : {
+		actionTypes   : [ 'standard', 'fullAttack' ],
 		baseDamage : '2d6'
 	},
 	buffShockingBurst : {
+		actionTypes   : [ 'standard', 'fullAttack' ],
 		damageType : 'shocking',
 		bonusDice : {
 			hit : [ '1d6' ],
@@ -40,6 +44,7 @@ const Modifiers = {
 		}
 	},
 	buffFlamingBurst : {
+		actionTypes   : [ 'standard', 'fullAttack' ],
 		damageType : 'fire',
 		bonusDice : {
 			hit : [ '1d6' ],
@@ -97,7 +102,7 @@ export default class App extends Component {
 	modifiedAttackBonus() {
 		let attackBonus = Weapon.enhancementBonus;
 		for( var key in this.state.configuration ) {
-			if( this.validateModifier( key, 'attackBonus' ) ) {
+			if( this.validateModifier( key, 'attackBonus' ) && Modifiers[ key ].actionTypes.indexOf( this.state.configuration.actionType ) > -1 ) {
 				attackBonus += Modifiers[ key ].attackBonus;
 			}
 		}
@@ -137,7 +142,7 @@ export default class App extends Component {
 			}
 		);
 		this.setState({
-			damageTeaser : damage
+			damageTeaser : Math.floor( damage )
 		});
 	}
 	
