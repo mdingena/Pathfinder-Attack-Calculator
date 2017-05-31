@@ -8,18 +8,13 @@ html, body {
 	font-family: 'arial';
 	background: skyblue;
 }
-#root {
-	position: absolute;
-	top: 0;
-	left: 50%;
-}
 .app {
-	position: absolute;
+	position: relative;
 	width: 100vw;
 	max-width: 640px;
+	margin: 0 auto;
 	height: 100vh;
 	font-size: 19px;
-	transform: translateX( -50% );
 	box-shadow: 0 0 4px #112;
 }
 ul {
@@ -54,7 +49,7 @@ ul {
 .damageRolls ul {
 	width: 100%;
 	height: 100%;
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .configuration h3 {
@@ -89,7 +84,6 @@ ul {
 .configuration .teaser {
 	position: fixed;
 	bottom: 60px;
-	left: 0;
 	width: 100%;
 	max-width: 640px;
 	background: lightskyblue;
@@ -112,7 +106,6 @@ ul {
 .configuration button {
 	position: fixed;
 	bottom: 0;
-	left: 0;
 	width: 100%;
 	max-width: 640px;
 	height: 60px;
@@ -126,8 +119,8 @@ ul {
 .navigate {
 	position: fixed;
 	bottom: 0;
-	left: 0;
 	width: 100%;
+	max-width: 640px;
 	height: 40px;
 }
 .navigate button {
@@ -139,8 +132,8 @@ ul {
 	cursor: pointer;
 }
 .navigate .back {
-	width: 40%;
+	width: 35%;
 }
 .navigate .next {
-	width: 60%;
+	width: 65%;
 }
