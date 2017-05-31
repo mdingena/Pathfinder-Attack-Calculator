@@ -9,6 +9,7 @@ export default class Configuration extends Component {
 			buffBracersOfTheAvengingKnight : true
 		};
 		this.handleChange = this.handleChange.bind( this );
+		this.handleSubmit = this.handleSubmit.bind( this );
 	}
 	
 	componentWillMount() {
@@ -26,13 +27,14 @@ export default class Configuration extends Component {
 		});
 	}
 	
-	handleSubmit() {
-		
+	handleSubmit( event ) {
+		event.preventDefault();
+		this.props.confirmConfiguration( 'attackSequence' );
 	}
 	
 	render() {
 		return (
-			<div className="configuration">
+			<div className={ "configuration" + ( this.props.show ? " show" : "" ) }>
 				<form onSubmit={ this.handleSubmit }>
 					<h3>Action</h3>
 					<select onChange={ this.handleChange } value={ this.state.actionType } id="actionType">

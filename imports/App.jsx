@@ -57,6 +57,11 @@ export default class App extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
+			panels : {
+				configuration  : true,
+				attackSequence : false,
+				damageRolls    : false
+			},
 			configuration : {},
 			attackSequence : [],
 			damageRolls : [],
@@ -65,6 +70,7 @@ export default class App extends Component {
 		};
 		this.configurationUpdated = this.configurationUpdated.bind( this );
 		this.modifyAttackSequence = this.modifyAttackSequence.bind( this );
+		this.switchToPanel = this.switchToPanel.bind( this );
 	}
 	
 	configurationUpdated( state ) {
@@ -254,28 +260,61 @@ export default class App extends Component {
 		});
 	}
 	
+	switchToPanel( panel ) {
+		console.log( "switch called", panel );
+		let panels = {
+			configuration : false,
+			attackSequence : false,
+			damageRolls : false
+		};
+		console.log( this.state.panels );
+		this.setState({
+			panels : panels
+		}, () => {
+			console.log( this.state.panels );
+			panels[ panel ] = true;
+			this.setState({
+				panels : panels
+			}, () => {
+				console.log( this.state.panels );
+			});
+		});
+	}
+	
 	render() {
 		return (
 			<div className="app">
-				<Configuration updateCalculator={ this.configurationUpdated } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser }/>
-				<ul className="attackSequence">
-					{ this.state.attackSequence.map(
-						( attack ) => <Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
-					) }
-				</ul>
-				<ul className="damageRolls">
-					{ this.state.damageRolls.map(
-						( attack, index ) =>
-							<li key={ index }>
-								{ index + 1 }
-								<ul>
-									{ attack.map(
-										( roll, index ) => <li key={ index }>{ roll }</li>
-									) }
-								</ul>
-							</li>
-					) }
-				</ul>
+				<Configuration show={ this.state.panels.configuration } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser }/>
+				<div className={ "attackSequence" + ( this.state.panels.attackSequence ? " show" : "" ) }>
+					<ul>
+						{ this.state.attackSequence.map(
+							( attack ) => <Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
+						) }
+					</ul>
+					<div className="navigate">
+						<button className="back" onClick={ () => { this.switchToPanel( 'configuration' ) } }>« Back</button>
+						<button className="next" onClick={ () => { this.switchToPanel( 'damageRolls' ) } }>Damage!</button>
+					</div>
+				</div>
+				<div className={ "damageRolls" + ( this.state.panels.damageRolls ? " show" : "" ) }>
+					<ul>
+						{ this.state.damageRolls.map(
+							( attack, index ) =>
+								<li key={ index }>
+									{ index + 1 }
+									<ul>
+										{ attack.map(
+											( roll, index ) => <li key={ index }>{ roll }</li>
+										) }
+									</ul>
+								</li>
+						) }
+					</ul>
+					<div className="navigate">
+						<button className="back" onClick={ () => { this.switchToPanel( 'attackSequence' ) } }>« Back</button>
+						<button className="next" onClick={ () => { this.switchToPanel( 'configuration' ) } }>Reconfigure!</button>
+					</div>
+				</div>
 			</div>
 		);
 	}
