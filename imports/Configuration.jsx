@@ -10,6 +10,7 @@ export default class Configuration extends Component {
 		};
 		this.handleChange = this.handleChange.bind( this );
 		this.handleSubmit = this.handleSubmit.bind( this );
+		this.confirmConfiguration = this.confirmConfiguration.bind( this );
 	}
 	
 	componentWillMount() {
@@ -29,6 +30,9 @@ export default class Configuration extends Component {
 	
 	handleSubmit( event ) {
 		event.preventDefault();
+	}
+	
+	confirmConfiguration() {
 		this.props.confirmConfiguration( 'attackSequence' );
 	}
 	
@@ -61,12 +65,12 @@ export default class Configuration extends Component {
 					<ul className="equipment">
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBracersOfTheAvengingKnight || false } id="buffBracersOfTheAvengingKnight" /><label htmlFor="buffBracersOfTheAvengingKnight">Bracers Of The Avenging Knight</label></li>
 					</ul>
-					<div className="teaser">
-						<div className="attackTeaser">{ this.props.attackTeaser } <small>ATK</small></div>
-						<div className="damageTeaser">{ this.props.damageTeaser } <small>DMG</small></div>
-					</div>
-					<button type="submit">Attack!</button>
 				</form>
+				<div className="teaser">
+					<div className="attackTeaser">{ this.props.attackTeaser } <small>ATK</small></div>
+					<div className="damageTeaser">{ this.props.damageTeaser } <small>DMG</small></div>
+				</div>
+				<button onClick={ () => { this.confirmConfiguration(); } }>Attack!</button>
 			</div>
 		);
 	}
