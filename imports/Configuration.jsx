@@ -41,10 +41,12 @@ export default class Configuration extends Component {
 			<div className={ "configuration" + ( this.props.show ? " show" : "" ) }>
 				<form onSubmit={ this.handleSubmit }>
 					<h3>Action</h3>
-					<select onChange={ this.handleChange } value={ this.state.actionType } id="actionType">
-						<option value="standard">Standard</option>
-						<option value="fullAttack">Full Attack</option>
-					</select>
+					<div className="actionType">
+						<select onChange={ this.handleChange } value={ this.state.actionType } id="actionType">
+							<option value="standard">Standard</option>
+							<option value="fullAttack">Full Attack</option>
+						</select>
+					</div>
 					<h3>Feats</h3>
 					<ul className="feats">
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.featRapidShot || false } id="featRapidShot" /><label htmlFor="featRapidShot">Rapid Shot</label></li>
