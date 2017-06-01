@@ -4,8 +4,10 @@ export default class Configuration extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			actionType : 'fullAttack',
-			buffShockingBurst : true,
+			actionType                     : 'fullAttack',
+			featRapidShot                  : true,
+			featDeadlyAim                  : true,
+			buffShockingBurst              : true,
 			buffBracersOfTheAvengingKnight : true
 		};
 		this.handleChange = this.handleChange.bind( this );
