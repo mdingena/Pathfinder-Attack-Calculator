@@ -254,6 +254,8 @@ export default class App extends Component {
 		}
 		this.setState({
 			damageRolls : attacks
+		}, () => {
+			this.damageTeaser();
 		});
 	}
 	
