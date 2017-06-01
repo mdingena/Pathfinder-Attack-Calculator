@@ -353,19 +353,19 @@ export default class App extends Component {
 					</div>
 				</div>
 				<div className={ "damageRolls" + ( this.state.panels.damageRolls ? " show" : "" ) }>
-					<ul>
-						{ this.state.damageRolls.map(
+					<div className="lists">
+						{ this.state.consolidatedDamageRolls.map(
 							( attack, index ) =>
-								<li key={ index }>
-									{ index + 1 }
+								<div key={ index }>
+									<h3>Attack #{ index + 1 }</h3>
 									<ul>
 										{ attack.map(
 											( roll, index ) => <li key={ index }>{ roll }</li>
 										) }
 									</ul>
-								</li>
+								</div>
 						) }
-					</ul>
+					</div>
 					<div className="navigate">
 						<button className="back" onClick={ () => { this.switchToPanel( 'attackSequence' ) } }>« Back</button>
 						<button className="next" onClick={ () => { this.buildAttackSequence(); this.switchToPanel( 'configuration' ); } }>Reconfigure!</button>

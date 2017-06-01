@@ -17,9 +17,6 @@ html, body {
 	font-size: 19px;
 	box-shadow: 0 0 4px #112;
 }
-ul {
-	margin: 0;
-}
 
 .configuration,
 .attackSequence,
@@ -46,7 +43,7 @@ ul {
 }
 .configuration form,
 .attackSequence ul,
-.damageRolls ul {
+.damageRolls .lists {
 	width: 100%;
 	height: 100%;
 	padding-bottom: 1em;
@@ -58,7 +55,7 @@ ul {
 	margin-left: auto;
 	margin-right: auto;
 }
-.configuration h3 {
+h3 {
 	text-align: center;
 	margin-bottom: 0;
 	padding: 0.1em;
@@ -73,13 +70,13 @@ ul {
 	padding: 0.3em;
 	border-radius: 3px;
 }
-.configuration ul {
+ul {
 	list-style: none;
 	margin: 0 auto;
 	padding: 0;
 	box-shadow: 0 2px 4px #ccc;
 }
-.configuration ul li {
+ul li {
 	position: relative;
 	height: 2em;
 	background: #fcfcfc;
@@ -87,6 +84,9 @@ ul {
 	border-bottom: 1px solid #eee;
 	line-height: 1.5em;
 	vertical-align: middle;
+}
+.lists li {
+	padding: 4px 10px 0 20px;
 }
 .configuration input {
 	width: 1.5em;
@@ -101,25 +101,25 @@ ul {
 	width: 100%;
 	padding: 4px 0 0 50px;
 }
-.configuration .teaser {
+.teaser {
 	position: absolute;
 	bottom: 60px;
 	width: 100%;
 	max-width: 640px;
 	background: lightskyblue;
 }
-.configuration .attackTeaser,
-.configuration .damageTeaser {
+.teaser .attackTeaser,
+.teaser .damageTeaser {
 	float: left;
 	height: 40px;
 	line-height: 40px;
 	color: #ffd;
 	text-align: center;
 }
-.configuration .attackTeaser {
+.teaser .attackTeaser {
 	width: 70%;
 }
-.configuration .damageTeaser {
+.teaser .damageTeaser {
 	width: 30%;
 	background: crimson;
 }
