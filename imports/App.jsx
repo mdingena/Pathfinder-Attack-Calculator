@@ -254,29 +254,21 @@ export default class App extends Component {
 		}
 		this.setState({
 			damageRolls : attacks
-		}, () => {
-			this.damageTeaser();
-			console.log( this.state.damageRolls );
 		});
 	}
 	
 	switchToPanel( panel ) {
-		console.log( "switch called", panel );
 		let panels = {
 			configuration : false,
 			attackSequence : false,
 			damageRolls : false
 		};
-		console.log( this.state.panels );
 		this.setState({
 			panels : panels
 		}, () => {
-			console.log( this.state.panels );
 			panels[ panel ] = true;
 			this.setState({
 				panels : panels
-			}, () => {
-				console.log( this.state.panels );
 			});
 		});
 	}
