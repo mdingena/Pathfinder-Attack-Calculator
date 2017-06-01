@@ -48,10 +48,14 @@ export default class Configuration extends Component {
 				<form onSubmit={ this.handleSubmit }>
 					<h3>Action</h3>
 					<div className="actionType">
-						<select onChange={ this.handleChange } value={ this.state.actionType } id="actionType">
-							<option value="standard">Standard</option>
-							<option value="fullAttack">Full Attack</option>
-						</select>
+						<ul>
+							<li>
+								<select onChange={ this.handleChange } value={ this.state.actionType } id="actionType">
+									<option value="standard">Standard</option>
+									<option value="fullAttack">Full Attack</option>
+								</select>
+							</li>
+						</ul>
 					</div>
 					<h3>Feats</h3>
 					<ul className="feats">
