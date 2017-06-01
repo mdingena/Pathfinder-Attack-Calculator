@@ -25,6 +25,9 @@ h3 {
 	background: #fea;
 	border-bottom: 1px solid #ed9;
 }
+h3:first-child {
+	margin-top: 0;
+}
 ul {
 	list-style: none;
 	margin: 0 auto;
@@ -57,11 +60,10 @@ ul li {
 .damageRolls.show {
 	display: block;
 }
-.configuration {
-	padding-bottom: 100px;
-}
+.configuration,
 .attackSequence,
 .damageRolls {
+	padding-top: 40px;
 	padding-bottom: 60px;
 }
 .configuration form,
@@ -126,13 +128,14 @@ ul li {
 
 .teaser {
 	position: absolute;
-	bottom: 60px;
+	top: 0;
 	width: 100%;
 	max-width: 640px;
 	background: lightskyblue;
 }
 .teaser .attackTeaser,
-.teaser .damageTeaser {
+.teaser .damageTeaser,
+.teaser .rollTeaser {
 	float: left;
 	height: 40px;
 	line-height: 40px;
@@ -145,6 +148,9 @@ ul li {
 .teaser .damageTeaser {
 	width: 30%;
 	background: crimson;
+}
+.teaser .rollTeaser {
+	width: 100%;
 }
 
 .navigate {

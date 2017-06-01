@@ -338,6 +338,10 @@ export default class App extends Component {
 			<div className="app">
 				<Configuration show={ this.state.panels.configuration } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser } />
 				<div className={ "attackSequence" + ( this.state.panels.attackSequence ? " show" : "" ) }>
+					<div className="teaser">
+						<div className="attackTeaser">Shots fired!</div>
+						<div className="damageTeaser">{ this.state.damageTeaser } <small>DMG</small></div>
+					</div>
 					<div className="lists">
 						<h3>Attacks</h3>
 						<ul>
@@ -346,16 +350,15 @@ export default class App extends Component {
 							) }
 						</ul>
 					</div>
-					<div className="teaser">
-						<div className="attackTeaser">Shots fired!</div>
-						<div className="damageTeaser">{ this.state.damageTeaser } <small>DMG</small></div>
-					</div>
 					<div className="navigate">
 						<button className="back" onClick={ () => { this.switchToPanel( 'configuration' ) } }>« Back</button>
 						<button className="next" onClick={ () => { this.switchToPanel( 'damageRolls' ) } }>Damage!</button>
 					</div>
 				</div>
 				<div className={ "damageRolls" + ( this.state.panels.damageRolls ? " show" : "" ) }>
+					<div className="teaser">
+						<div className="rollTeaser">Roll these dice</div>
+					</div>
 					<div className="lists">
 						{ this.state.consolidatedDamageRolls.map(
 							( attack, index ) =>

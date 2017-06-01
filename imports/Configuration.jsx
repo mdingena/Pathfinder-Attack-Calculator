@@ -41,6 +41,10 @@ export default class Configuration extends Component {
 	render() {
 		return (
 			<div className={ "configuration" + ( this.props.show ? " show" : "" ) }>
+				<div className="teaser">
+					<div className="attackTeaser">{ this.props.attackTeaser } <small>ATK</small></div>
+					<div className="damageTeaser">{ this.props.damageTeaser } <small>DMG</small></div>
+				</div>
 				<form onSubmit={ this.handleSubmit }>
 					<h3>Action</h3>
 					<div className="actionType">
@@ -70,10 +74,6 @@ export default class Configuration extends Component {
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBracersOfTheAvengingKnight || false } id="buffBracersOfTheAvengingKnight" /><label htmlFor="buffBracersOfTheAvengingKnight">Bracers Of The Avenging Knight</label></li>
 					</ul>
 				</form>
-				<div className="teaser">
-					<div className="attackTeaser">{ this.props.attackTeaser } <small>ATK</small></div>
-					<div className="damageTeaser">{ this.props.damageTeaser } <small>DMG</small></div>
-				</div>
 				<button onClick={ () => { this.confirmConfiguration(); } }>Attack!</button>
 			</div>
 		);
