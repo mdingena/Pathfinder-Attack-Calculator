@@ -158,6 +158,7 @@ export default class App extends Component {
 		const modifiedAttackBonus = this.modifiedAttackBonus();
 		let attackSequence = [];
 		for( let count = 0; count < numberOfAttacks + additionalAttacks; ++count ) {
+			const malus = count - additionalAttacks;
 			const attack = {
 				key         : count,
 				id          : count,
@@ -165,7 +166,7 @@ export default class App extends Component {
 				attackBonus : Character.modifier.baseAttackBonus
 							  + Character.modifier.dexterity
 							  + modifiedAttackBonus
-							  - 5 * ( count > 0 ? count : 0 ),
+							  - 5 * ( malus > 0 ? malus : 0 ),
 				result      : 'hit'
 			};
 			attackSequence.push( attack );
