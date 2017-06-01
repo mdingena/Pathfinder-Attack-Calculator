@@ -133,16 +133,15 @@ export default class App extends Component {
 	damageTeaser() {
 		let damage = 0;
 		this.state.damageRolls.map(
-			( attack, i ) => {
+			( attack ) => {
 				attack.map(
-					( roll, j ) => {
+					( roll ) => {
 						const total   = roll.split( ' ' )[ 0 ];
 						const split   = total.replace( '-', '+' ).split( '+' );
 						const dice    = split[ 0 ].split( 'd' );
 						const flat    = split[ 1 ] && parseInt( split[ 1 ] ) != 0 ? parseInt( split[ 1 ] ) : 0;
 						const diceAvg = parseInt( dice[ 0 ] ) * ( ( 1 + parseInt( dice[ 1 ] ) ) / 2 );
 						damage += diceAvg + flat;
-						console.log( i, j, flat, diceAvg );
 					}
 				);
 			}
@@ -278,7 +277,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<Configuration show={ this.state.panels.configuration } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser }/>
+				<Configuration show={ this.state.panels.configuration } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser } />
 				<div className={ "attackSequence" + ( this.state.panels.attackSequence ? " show" : "" ) }>
 					<ul>
 						{ this.state.attackSequence.map(
