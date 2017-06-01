@@ -338,11 +338,14 @@ export default class App extends Component {
 			<div className="app">
 				<Configuration show={ this.state.panels.configuration } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser } />
 				<div className={ "attackSequence" + ( this.state.panels.attackSequence ? " show" : "" ) }>
-					<ul>
-						{ this.state.attackSequence.map(
-							( attack ) => <Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
-						) }
-					</ul>
+					<div className="lists">
+						<h3>Attacks</h3>
+						<ul>
+							{ this.state.attackSequence.map(
+								( attack ) => <Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
+							) }
+						</ul>
+					</div>
 					<div className="teaser">
 						<div className="attackTeaser">Shots fired!</div>
 						<div className="damageTeaser">{ this.state.damageTeaser } <small>DMG</small></div>
