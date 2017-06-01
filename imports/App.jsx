@@ -65,6 +65,7 @@ export default class App extends Component {
 			configuration : {},
 			attackSequence : [],
 			damageRolls : [],
+			consolidatedDamageRolls : [],
 			attackTeaser : '',
 			damageTeaser : ''
 		};
@@ -230,6 +231,7 @@ export default class App extends Component {
 	
 	damageRolls() {
 		let attacks = [];
+		let consolidated = [];
 		for( let count = 0; count < this.state.attackSequence.length; ++count ) {
 			let baseDamage = this.baseDamage();
 			let bonusDamage = this.bonusDamage( count );
@@ -249,13 +251,70 @@ export default class App extends Component {
 					}
 				}
 				attacks[ count ] = rolls;
+				let reduced = [];
+				for( r in rolls ) {
+					const roll = this.parseRoll( rolls[ r ] );
+					let match = false;
+					for( key in reduced ) {
+						if( reduced[ key ].dieBase == roll.dieBase && reduced[ key ].damageType == roll.damageType ) {
+							match = key;
+							break;
+						}
+					}
+					if( match === false ) {
+						reduced.push( roll );
+					} else {
+						reduced[ match ].dieCount += roll.dieCount;
+						reduced[ match ].dieBonus += roll.dieBonus;
+					}
+				}
+				rolls = [];
+				for( key in reduced ) {
+					let bonus = ( reduced[ key ].dieBonus >= 0 ? '+' : '' ) + reduced[ key ].dieBonus;
+					rolls.push( reduced[ key ].dieCount + 'd' + reduced[ key ].dieBase + ( bonus != '+0' ? bonus : '' ) + ' ' + reduced[ key ].damageType );
+				}
+				consolidated[ count ] = rolls;
 			}
 		}
 		this.setState({
-			damageRolls : attacks
+			            damageRolls : attacks,
+			consolidatedDamageRolls : consolidated
 		}, () => {
 			this.damageTeaser();
 		});
+	}
+	
+	parseRoll( rollText ) {
+		// deconstruct roll text for consolidation
+		// could've written this thing smarter but it's an after-the-fact nice to have design addition, so yeah... maybe later
+		const splitType = rollText.split( ' ' );
+		const type = splitType[ 1 ];
+		let splitBonus = splitType[ 0 ].split( '+' );
+		let hasBonus = true;
+		let isMalus = false;
+		if( typeof splitBonus[ 1 ] === 'undefined' ) {
+			splitBonus = splitType[ 0 ].split( '-' );
+			if( typeof splitBonus[ 1 ] === 'undefined' ) {
+				hasBonus = false;
+			} else {
+				isMalus = true;
+			}
+		}
+		let bonus = 0;
+		if( hasBonus && isMalus ) {
+			bonus = -1 * parseInt( splitBonus[ 1 ] );
+		} else if( hasBonus && !isMalus ) {
+			bonus =  parseInt( splitBonus[ 1 ] );
+		}
+		const splitDice = splitBonus[ 0 ].split( 'd' );
+		const dice = parseInt( splitDice[ 0 ] );
+		const base = parseInt( splitDice[ 1 ] );
+		return {
+			dieCount   : dice,
+			dieBase    : base,
+			dieBonus   : bonus,
+			damageType : type
+		};
 	}
 	
 	switchToPanel( panel ) {
@@ -284,6 +343,10 @@ export default class App extends Component {
 							( attack ) => <Attack updateCalculator={ this.modifyAttackSequence } { ...attack } />
 						) }
 					</ul>
+					<div className="teaser">
+						<div className="attackTeaser">Shots fired!</div>
+						<div className="damageTeaser">{ this.state.damageTeaser } <small>DMG</small></div>
+					</div>
 					<div className="navigate">
 						<button className="back" onClick={ () => { this.switchToPanel( 'configuration' ) } }>« Back</button>
 						<button className="next" onClick={ () => { this.switchToPanel( 'damageRolls' ) } }>Damage!</button>
