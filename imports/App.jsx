@@ -339,7 +339,7 @@ export default class App extends Component {
 				<Configuration show={ this.state.panels.configuration } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser } />
 				<div className={ "attackSequence" + ( this.state.panels.attackSequence ? " show" : "" ) }>
 					<div className="teaser">
-						<div className="attackTeaser">Shots fired!</div>
+						<div className="attackTeaser">Configure your results</div>
 						<div className="damageTeaser">{ this.state.damageTeaser } <small>DMG</small></div>
 					</div>
 					<div className="lists">
@@ -351,8 +351,8 @@ export default class App extends Component {
 						</ul>
 					</div>
 					<div className="navigate">
-						<button className="back" onClick={ () => { this.switchToPanel( 'configuration' ) } }>« Back</button>
-						<button className="next" onClick={ () => { this.switchToPanel( 'damageRolls' ) } }>Damage!</button>
+						<button className="back" onClick={ () => { this.switchToPanel( 'configuration' ) } }>← Back</button>
+						<button className="next" onClick={ () => { this.switchToPanel( 'damageRolls' ) } }>Damage →</button>
 					</div>
 				</div>
 				<div className={ "damageRolls" + ( this.state.panels.damageRolls ? " show" : "" ) }>
@@ -373,8 +373,8 @@ export default class App extends Component {
 						) }
 					</div>
 					<div className="navigate">
-						<button className="back" onClick={ () => { this.switchToPanel( 'attackSequence' ) } }>« Back</button>
-						<button className="next" onClick={ () => { this.buildAttackSequence(); this.switchToPanel( 'configuration' ); } }>Reconfigure!</button>
+						<button className="back" onClick={ () => { this.switchToPanel( 'attackSequence' ) } }>← Back</button>
+						<button className="next" onClick={ () => { this.buildAttackSequence(); this.switchToPanel( 'configuration' ); } }>Reconfigure ↑</button>
 					</div>
 				</div>
 			</div>

@@ -1,3 +1,11 @@
+@fontFamily: 'Corbel', 'Arial';
+@text: #393e41;
+@panel: #f0f0f2;
+@accent: #0892a5;
+@accentText: #f6f6f6;
+@header: darken( @accent, 10% );
+@headerText: #f6f6f6;
+
 * {
 	box-sizing: border-box;
 }
@@ -5,8 +13,9 @@ html, body {
 	width: 100vw;
 	height: 100vh;
 	margin: 0;
-	font-family: 'arial';
-	background: skyblue;
+	font-family: @fontFamily;
+	color: @text;
+	background: @text;
 }
 .app {
 	position: relative;
@@ -15,15 +24,18 @@ html, body {
 	margin: 0 auto;
 	height: 100vh;
 	font-size: 19px;
-	box-shadow: 0 0 4px #112;
+	box-shadow: 0 0 4px darken( @text, 20% );
 }
 
 h3 {
 	text-align: center;
 	margin-bottom: 0;
 	padding: 0.1em;
-	background: #fea;
-	border-bottom: 1px solid #ed9;
+	color: @headerText;
+	background: @header;
+	text-shadow: 0 1px 1px lighten( @header, 5% ), 0 -1px 1px darken( @header, 5% );
+	border-top: 1px solid darken( @header, 4% );
+	border-bottom: 1px solid darken( @header, 4% );
 }
 h3:first-child {
 	margin-top: 0;
@@ -32,14 +44,15 @@ ul {
 	list-style: none;
 	margin: 0 auto;
 	padding: 0;
-	box-shadow: 0 2px 4px #ccc;
+	box-shadow: 0 2px 4px darken( @panel, 20% );
 }
 ul li {
 	position: relative;
 	height: 2em;
-	background: #fcfcfc;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #eee;
+	text-shadow: 0 1px 1px lighten( darken( @panel, 3% ), 5% ), 0 -1px 1px darken( darken( @panel, 3% ), 5% );
+	background: darken( @panel, 3% );
+	border-top: 1px solid lighten( darken( @panel, 3% ), 4% );
+	border-bottom: 1px solid darken( darken( @panel, 3% ), 4% );
 	line-height: 1.5em;
 	vertical-align: middle;
 }
@@ -53,7 +66,7 @@ ul li {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: white;
+	background: @panel;
 }
 .configuration.show,
 .attackSequence.show,
@@ -75,11 +88,6 @@ ul li {
 	overflow-y: auto;
 }
 
-.configuration form * {
-	max-width: 480px;
-	margin-left: auto;
-	margin-right: auto;
-}
 .configuration .actionType {
 	line-height: 2em;
 	text-align: center;
@@ -107,10 +115,12 @@ ul li {
 	width: 100%;
 	max-width: 640px;
 	height: 60px;
-	background: deepskyblue;
+	color: @accentText;
+	background: @accent;
+	text-shadow: 0 1px 1px lighten( @accent, 5% ), 0 -1px 1px darken( @accent, 5% );
 	border: 0;
-	font-size: 2em;
-	color: #ffd;
+	font-size: 1.5em;
+	font-family: @fontFamily;
 	cursor: pointer;
 }
 
@@ -131,23 +141,28 @@ ul li {
 	top: 0;
 	width: 100%;
 	max-width: 640px;
-	background: lightskyblue;
+	box-shadow: 0 1px 2px @text;
 }
 .teaser .attackTeaser,
 .teaser .damageTeaser,
 .teaser .rollTeaser {
 	float: left;
 	height: 40px;
+	color: @accentText;
+	background: @accent;
+	text-shadow: 0 1px 1px lighten( @accent, 5% ), 0 -1px 1px darken( @accent, 5% );
+	border-top: 1px solid darken( @accent, 4% );
+	border-bottom: 1px solid darken( @accent, 4% );
 	line-height: 40px;
-	color: #ffd;
 	text-align: center;
 }
 .teaser .attackTeaser {
 	width: 70%;
+	border-right: 1px solid lighten( @accent, 4% );
 }
 .teaser .damageTeaser {
 	width: 30%;
-	background: crimson;
+	border-left: 1px solid darken( @accent, 4% );
 }
 .teaser .rollTeaser {
 	width: 100%;
@@ -162,15 +177,19 @@ ul li {
 }
 .navigate button {
 	height: 60px;
-	background: deepskyblue;
+	color: @accentText;
+	background: @accent;
+	text-shadow: 0 1px 1px lighten( @accent, 5% ), 0 -1px 1px darken( @accent, 5% );
 	border: 0;
 	font-size: 1.5em;
-	color: #ffd;
+	font-family: @fontFamily;
 	cursor: pointer;
 }
 .navigate .back {
 	width: 35%;
+	border-right: 1px solid lighten( @accent, 4% );
 }
 .navigate .next {
 	width: 65%;
+	border-left: 1px solid darken( @accent, 4% );
 }

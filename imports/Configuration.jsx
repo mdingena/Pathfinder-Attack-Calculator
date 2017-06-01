@@ -74,7 +74,7 @@ export default class Configuration extends Component {
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBracersOfTheAvengingKnight || false } id="buffBracersOfTheAvengingKnight" /><label htmlFor="buffBracersOfTheAvengingKnight">Bracers Of The Avenging Knight</label></li>
 					</ul>
 				</form>
-				<button onClick={ () => { this.confirmConfiguration(); } }>Attack!</button>
+				<button onClick={ () => { this.confirmConfiguration(); } }>Attack →</button>
 			</div>
 		);
 	}
