@@ -15,14 +15,36 @@ html, body {
 	margin: 0;
 	font-family: @fontFamily;
 	color: @text;
+	background: lighten( @text, 5% );
+}
+.bar {
+	position: absolute;
+	left: 0;
+	width: 100%;
 	background: @text;
+}
+.bar.head {
+	top: 0;
+	height: 70px;
+}
+.bar.foot {
+	bottom: 0;
+	height: 90px;
+}
+#root {
+	height: 100%;
+}
+@media only screen and (min-width: 641px) {
+	#root {
+		padding: 30px;
+	}
 }
 .app {
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	max-width: 640px;
 	margin: 0 auto;
-	height: 100vh;
+	height: 100%;
 	font-size: 19px;
 	box-shadow: 0 0 4px darken( @text, 20% );
 }
