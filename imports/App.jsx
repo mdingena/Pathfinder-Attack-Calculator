@@ -312,7 +312,7 @@ export default class App extends Component {
 					</ul>
 					<div className="navigate">
 						<button className="back" onClick={ () => { this.switchToPanel( 'attackSequence' ) } }>« Back</button>
-						<button className="next" onClick={ () => { this.switchToPanel( 'configuration' ) } }>Reconfigure!</button>
+						<button className="next" onClick={ () => { this.buildAttackSequence(); this.switchToPanel( 'configuration' ); } }>Reconfigure!</button>
 					</div>
 				</div>
 			</div>
