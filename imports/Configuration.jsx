@@ -67,11 +67,12 @@ export default class Configuration extends Component {
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffGravityBow || false } id="buffGravityBow" /><label htmlFor="buffGravityBow">Gravity Bow</label></li>
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffShockingBurst || false } id="buffShockingBurst" /><label htmlFor="buffShockingBurst">Shocking Burst</label></li>
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffFlamingBurst || false } id="buffFlamingBurst" /><label htmlFor="buffFlamingBurst">Flaming Burst</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteEvil || false } id="buffSmiteEvil" /><label htmlFor="buffSmiteEvil">Smite Evil</label></li>
 					</ul>
-					<h3>Smite Target</h3>
-					<ul className="smite">
-						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteEvil || false } id="buffSmiteEvil" /><label htmlFor="buffSmiteEvil">Is evil</label></li>
-						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteSubtype || false } id="buffSmiteSubtype" /><label htmlFor="buffSmiteSubtype">Is outsider, dragon or undead</label></li>
+					<h3>Target</h3>
+					<ul className="target">
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.targetIsEvil || false } id="targetIsEvil" /><label htmlFor="targetIsEvil">Is evil</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.targetIsSmiteSubtype || false } id="targetIsSmiteSubtype" /><label htmlFor="targetIsSmiteSubtype">Is outsider, dragon or undead</label></li>
 					</ul>
 					<h3>Equipment</h3>
 					<ul className="equipment">

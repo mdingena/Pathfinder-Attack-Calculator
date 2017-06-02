@@ -209,9 +209,10 @@ export default class App extends Component {
 		let paladinLevel = Character.paladinLevel + ( this.state.configuration.buffBracersOfTheAvengingKnight ? 4 : 0 );
 		if( attackId == 0 
 			&& this.state.configuration.buffSmiteEvil
+			&& this.state.configuration.targetIsEvil
 			&& this.state.configuration.targetIsSmiteSubtype ) {
 			damageBonus += 2 * paladinLevel;
-		} else if( this.state.configuration.buffSmiteEvil ) {
+		} else if( this.state.configuration.buffSmiteEvil && this.state.configuration.targetIsEvil ) {
 			damageBonus += paladinLevel;
 		}
 		if( damageBonus == 0 ) {
