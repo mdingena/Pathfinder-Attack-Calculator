@@ -27,16 +27,16 @@ const Modifiers = {
 		sequenceBonus : 1
 	},
 	featDeadlyAim : {
-		actionTypes   : [ 'standard', 'fullAttack' ],
+		actionTypes : [ 'standard', 'fullAttack' ],
 		attackBonus : -1 * ( 1 + Math.floor( Character.modifier.baseAttackBonus / 4 ) ),
 		damageBonus :  2 * ( 1 + Math.floor( Character.modifier.baseAttackBonus / 4 ) )
 	},
 	buffGravityBow : {
-		actionTypes   : [ 'standard', 'fullAttack' ],
+		actionTypes : [ 'standard', 'fullAttack' ],
 		baseDamage : '2d6'
 	},
 	buffShockingBurst : {
-		actionTypes   : [ 'standard', 'fullAttack' ],
+		actionTypes : [ 'standard', 'fullAttack' ],
 		damageType : 'shocking',
 		bonusDice : {
 			hit : [ '1d6' ],
@@ -44,7 +44,7 @@ const Modifiers = {
 		}
 	},
 	buffFlamingBurst : {
-		actionTypes   : [ 'standard', 'fullAttack' ],
+		actionTypes : [ 'standard', 'fullAttack' ],
 		damageType : 'fire',
 		bonusDice : {
 			hit : [ '1d6' ],
@@ -207,7 +207,9 @@ export default class App extends Component {
 			}
 		}
 		let paladinLevel = Character.paladinLevel + ( this.state.configuration.buffBracersOfTheAvengingKnight ? 4 : 0 );
-		if( attackId == 0 && this.state.configuration.buffSmiteEvil && this.state.configuration.buffSmiteSubtype ) {
+		if( attackId == 0 
+			&& this.state.configuration.buffSmiteEvil
+			&& this.state.configuration.targetIsSmiteSubtype ) {
 			damageBonus += 2 * paladinLevel;
 		} else if( this.state.configuration.buffSmiteEvil ) {
 			damageBonus += paladinLevel;
