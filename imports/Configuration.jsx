@@ -59,14 +59,20 @@ export default class Configuration extends Component {
 					</div>
 					<h3>Feats</h3>
 					<ul className="feats">
-						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.featRapidShot || false } id="featRapidShot" /><label htmlFor="featRapidShot">Rapid Shot</label></li>
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.featDeadlyAim || false } id="featDeadlyAim" /><label htmlFor="featDeadlyAim">Deadly Aim</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.featRapidShot || false } id="featRapidShot" /><label htmlFor="featRapidShot">Rapid Shot</label></li>
 					</ul>
 					<h3>Buffs</h3>
 					<ul className="buffs">
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBless || false } id="buffBless" /><label htmlFor="buffBless">Bless</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBlessWeapon || false } id="buffBlessWeapon" /><label htmlFor="buffBlessWeapon">Bless Weapon</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffBlessingOfFervor || false } id="buffBlessingOfFervor" /><label htmlFor="buffBlessingOfFervor">Blessing of Fervor: Attack</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffHaste || false } id="buffHaste" /><label htmlFor="buffHaste">Blessing of Fervor: Haste</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffDaybreakArrow || false } id="buffDaybreakArrow" /><label htmlFor="buffDaybreakArrow">Daybreak Arrow</label></li>
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffGravityBow || false } id="buffGravityBow" /><label htmlFor="buffGravityBow">Gravity Bow</label></li>
-						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffShockingBurst || false } id="buffShockingBurst" /><label htmlFor="buffShockingBurst">Shocking Burst</label></li>
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffFlamingBurst || false } id="buffFlamingBurst" /><label htmlFor="buffFlamingBurst">Flaming Burst</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffLitanyOfRighteousnous || false } id="buffLitanyOfRighteousnous" /><label htmlFor="buffLitanyOfRighteousnous">Litany of Righteousness</label></li>
+						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffShockingBurst || false } id="buffShockingBurst" /><label htmlFor="buffShockingBurst">Shocking Burst</label></li>
 						<li><input type="checkbox" onChange={ this.handleChange } checked={ this.state.buffSmiteEvil || false } id="buffSmiteEvil" /><label htmlFor="buffSmiteEvil">Smite Evil</label></li>
 					</ul>
 					<h3>Target</h3>

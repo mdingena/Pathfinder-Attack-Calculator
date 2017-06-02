@@ -50,6 +50,31 @@ const Modifiers = {
 			hit : [ '1d6' ],
 			crit : [ '1d6', '1d10' ]
 		}
+	},
+	buffDaybreakArrow : {
+		actionTypes : [ 'standard', 'fullAttack' ],
+		damageType : 'radiant*',
+		bonusDice : {
+			hit : [ '1d6' ],
+			crit : [ '1d6' ]
+		}
+	},
+	buffBless : {
+		actionTypes : [ 'standard', 'fullAttack' ],
+		attackBonus : 1
+	},
+	buffBlessWeapon : {
+		actionTypes : [ 'standard', 'fullAttack' ],
+		attackBonus : 1,
+		damageBonus : 1
+	},
+	buffBlessingOfFervor : {
+		actionTypes   : [ 'standard', 'fullAttack' ],
+		attackBonus   : 2
+	},
+	buffHaste : {
+		actionTypes   : [ 'fullAttack' ],
+		sequenceBonus : 1
 	}
 };
 
@@ -389,6 +414,7 @@ export default class App extends Component {
 										{ attack.map(
 											( roll, index ) => <li key={ index }>{ roll }</li>
 										) }
+										<DoubleDamage active={ ( this.state.configuration.buffLitanyOfRighteousnous && this.state.configuration.targetIsEvil ) } />
 									</ul>
 								</div>
 						) }
@@ -400,5 +426,17 @@ export default class App extends Component {
 				</div>
 			</div>
 		);
+	}
+};
+
+class DoubleDamage extends Component {
+	render() {
+		if( this.props.active ) {
+			return (
+				<li>Litany of Righteousness: Double all damage</li>
+			);
+		} else {
+			return null;
+		}
 	}
 };
