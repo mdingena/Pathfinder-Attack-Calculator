@@ -114,7 +114,7 @@ export default class App extends Component {
 				attackBonus += Modifiers[ key ].attackBonus;
 			}
 		}
-		if( this.state.configuration.buffSmiteEvil ) {
+		if( this.state.configuration.buffSmiteEvil && this.state.configuration.targetIsEvil ) {
 			attackBonus += Character.modifier.charisma;
 		}
 		return attackBonus;
