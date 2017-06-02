@@ -57,10 +57,11 @@ export default class App extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			panels : {
-				configuration  : true,
-				attackSequence : false,
-				damageRolls    : false
+			panel  : 'configuration',
+			hide : {
+				configuration  : false,
+				attackSequence : true,
+				damageRolls    : true
 			},
 			configuration : {},
 			attackSequence : [],
@@ -319,26 +320,42 @@ export default class App extends Component {
 	}
 	
 	switchToPanel( panel ) {
-		let panels = {
-			configuration : false,
-			attackSequence : false,
-			damageRolls : false
+		const current = this.state.panel;
+		let hidePanels = {
+			configuration  : ( ( current == 'attackSequence' && panel == 'damageRolls' ) || ( current == 'damageRolls' && panel == 'attackSequence' ) ),
+			attackSequence : ( current == 'damageRolls' && panel == 'reconfigure' ),
+			damageRolls    : ( current == 'reconfigure' && panel == 'attackSequence' )
 		};
 		this.setState({
-			panels : panels
+			hide : hidePanels
 		}, () => {
-			panels[ panel ] = true;
-			this.setState({
-				panels : panels
-			});
+			// slide to panel
+			setTimeout( () => {
+				this.setState({
+					panel : panel
+				}, () => {
+					// hide other panels after animation
+					setTimeout( () => {
+						hidePanels = {
+							configuration  : true,
+							attackSequence : true,
+							damageRolls    : true
+						};
+						hidePanels[ ( panel == 'reconfigure' ? 'configuration' : panel ) ] = false;
+						this.setState({
+							hide : hidePanels
+						});
+					}, 400 );
+				});
+			}, 1 );
 		});
 	}
 	
 	render() {
 		return (
-			<div className="app">
-				<Configuration show={ this.state.panels.configuration } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser } />
-				<div className={ "attackSequence" + ( this.state.panels.attackSequence ? " show" : "" ) }>
+			<div className={ "app panel-" + this.state.panel }>
+				<Configuration hide={ this.state.hide.configuration } reconfigure={ this.state.hide.reconfigure } updateCalculator={ this.configurationUpdated } confirmConfiguration={ this.switchToPanel } attackTeaser={ this.state.attackTeaser } damageTeaser={ this.state.damageTeaser } />
+				<div className={ "attackSequence" + ( this.state.hide.attackSequence ? " hide" : "" ) }>
 					<div className="teaser">
 						<div className="attackTeaser">Configure your results</div>
 						<div className="damageTeaser">{ this.state.damageTeaser } <small>DMG</small></div>
@@ -356,7 +373,7 @@ export default class App extends Component {
 						<button className="next" onClick={ () => { this.switchToPanel( 'damageRolls' ) } }>Damage →</button>
 					</div>
 				</div>
-				<div className={ "damageRolls" + ( this.state.panels.damageRolls ? " show" : "" ) }>
+				<div className={ "damageRolls" + ( this.state.hide.damageRolls ? " hide" : "" ) }>
 					<div className="teaser">
 						<div className="rollTeaser">Roll these dice</div>
 					</div>
@@ -375,7 +392,7 @@ export default class App extends Component {
 					</div>
 					<div className="navigate">
 						<button className="back" onClick={ () => { this.switchToPanel( 'attackSequence' ) } }>← Back</button>
-						<button className="next" onClick={ () => { this.buildAttackSequence(); this.switchToPanel( 'configuration' ); } }>Reconfigure ↑</button>
+						<button className="next" onClick={ () => { this.buildAttackSequence(); this.switchToPanel( 'reconfigure' ); } }>Reconfigure ↑</button>
 					</div>
 				</div>
 			</div>

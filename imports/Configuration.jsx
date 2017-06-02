@@ -40,7 +40,7 @@ export default class Configuration extends Component {
 	
 	render() {
 		return (
-			<div className={ "configuration" + ( this.props.show ? " show" : "" ) }>
+			<div className={ "configuration" + ( this.props.hide ? " hide" : "" ) }>
 				<div className="teaser">
 					<div className="attackTeaser">{ this.props.attackTeaser } <small>ATK</small></div>
 					<div className="damageTeaser">{ this.props.damageTeaser } <small>DMG</small></div>
